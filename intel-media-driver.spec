@@ -1,34 +1,25 @@
-%define name    intel-media
-%define version 23.1.3
-%define rel     2
-
 %define major   7
 %define libname %mklibname igfxcmrt %{major}
 %define develname %mklibname igfxcmrt -d
 
-Name:           %{name}
-Version:        %{version}
-Release:        %mkrel %{rel}
+Name:           intel-media-driver
+Version:        23.3.1
+Release:        1
 Summary:        Hardware-accelerated video processing on Intel integrated GPUs Library
 Group:          System/Kernel and hardware
 License:        MIT
 URL:            https://github.com/intel/media-driver
 Source0:        %{url}/archive/%{name}-%{version}.tar.gz
-# patches from git upstream
-Patch0:         0022-VP-fix-memleak-issue.patch
-#
+
 BuildRequires:  cmake
 BuildRequires:  pkgconfig(gmock)
-BuildRequires:  pkgconfig(igdgmm) >= 12.0.0
+BuildRequires:  pkgconfig(igdgmm)
 BuildRequires:  pkgconfig(libdrm_intel)
 BuildRequires:  pkgconfig(pciaccess)
 BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(ocl-icd)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(libva)
-
-# This package relies on igdgmm which relies on intel asm
-ExclusiveArch:  x86_64 
 
 %description
 Intel Media SDK provides a plain C API to access hardware-accelerated video
@@ -78,7 +69,6 @@ applications which will use igfxcmrt library.
 %{_libdir}/libigfxcmrt.so
 %{_libdir}/pkgconfig/igfxcmrt.pc
 
-
 %prep
 %autosetup -p1 -n media-driver-intel-media-%{version}
 
@@ -94,8 +84,8 @@ applications which will use igfxcmrt library.
     -DENABLE_X11_DRI3=ON \
     -DUSE_SYSTEM_GTEST=ON \
 
-%cmake_build
+%make_build
 
 %install
-%cmake_install
+%make_install -C build
 find %{buildroot} -name '*.la' -exec rm -f {} ';'
