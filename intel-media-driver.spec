@@ -9,7 +9,7 @@ Summary:        Hardware-accelerated video processing on Intel integrated GPUs L
 Group:          System/Kernel and hardware
 License:        MIT
 URL:            https://github.com/intel/media-driver
-Source0:        %{url}/archive/media-driver-%{version}.tar.gz
+Source0:        %{url}/archive/%{version}/media-driver-intel-media-%{version}.tar.gz
 
 BuildRequires:  cmake
 BuildRequires:  pkgconfig(gmock)
