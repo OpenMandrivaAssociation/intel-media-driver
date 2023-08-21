@@ -1,5 +1,5 @@
 %define major   7
-%define libname %mklibname igfxcmrt %{major}
+%define libname %mklibname igfxcmrt
 %define develname %mklibname igfxcmrt -d
 
 Name:           intel-media-driver
@@ -30,18 +30,17 @@ Supported video encoders: HEVC, AVC, MPEG-2, JPEG, VP9 Supported video decoders:
 HEVC, AVC, VP8, VP9, MPEG-2, VC1, JPEG Supported video pre-processing filters:
 Color Conversion, Deinterlace, Denoise, Resize, Rotate, Composition
 
-%package -n     vaapi-driver-%{name}
+%package -n     %{name}
 Summary:        Hardware-accelerated video processing driver for VAAPI Intel
 Group:          System/Kernel and hardware
+Requires:       %{libname} = %{EVRD}
  
-%description -n vaapi-driver-%{name}
+%description -n %{name}
 This package contains the driver needed to access hardware 
  
-
 %package -n     %{libname}
 Summary:        Hardware-accelerated video processing on Intel integrated GPUs Library
 Group:          System/Libraries
-Provides:       %{name} = %{version}-%{release}
  
 %description -n %{libname}
 This package contains the library needed to run programs dynamically
@@ -50,14 +49,15 @@ linked with igfxcmrt library.
 %package -n     %{develname}
 Summary:        SDK for hardware-accelerated video processing on Intel integrated GPUs
 Group:          Development/C++
-Requires:       %{libname} = %{version}
-Provides:       %{name}-devel = %{version}-%{release}
+Requires:       %{name} = %{EVRD}
+Requires:       %{libname} = %{EVRD}
+Provides:       %{name}-devel = %{EVRD}
  
 %description -n %{develname}
 This package contains the headers that programmers will need to develop
 applications which will use igfxcmrt library.
 
-%files -n vaapi-driver-%{name}
+%files -n %{name}
 %{_libdir}/dri/*_drv_video.so
  
 %files -n %{libname}
