@@ -21,22 +21,17 @@ BuildRequires:  pkgconfig(ocl-icd)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(libva)
 
+Requires:       %{libname} = %{EVRD}
+
 %description
 Intel Media SDK provides a plain C API to access hardware-accelerated video
 decode, encode and filtering on Intel Gen graphics hardware platforms.
 Implementation written in C++ 11 with parts in C-for-Media (CM).
+Hardware-accelerated video processing driver for VAAPI Intel
 
 Supported video encoders: HEVC, AVC, MPEG-2, JPEG, VP9 Supported video decoders:
 HEVC, AVC, VP8, VP9, MPEG-2, VC1, JPEG Supported video pre-processing filters:
 Color Conversion, Deinterlace, Denoise, Resize, Rotate, Composition
-
-%package -n     %{name}
-Summary:        Hardware-accelerated video processing driver for VAAPI Intel
-Group:          System/Kernel and hardware
-Requires:       %{libname} = %{EVRD}
- 
-%description -n %{name}
-This package contains the driver needed to access hardware 
  
 %package -n     %{libname}
 Summary:        Hardware-accelerated video processing on Intel integrated GPUs Library
@@ -57,7 +52,7 @@ Provides:       %{name}-devel = %{EVRD}
 This package contains the headers that programmers will need to develop
 applications which will use igfxcmrt library.
 
-%files -n %{name}
+%files
 %{_libdir}/dri/*_drv_video.so
  
 %files -n %{libname}
