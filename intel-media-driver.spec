@@ -3,13 +3,13 @@
 %define develname %mklibname igfxcmrt -d
 
 Name:           intel-media-driver
-Version:        23.3.1
+Version:        23.4.3
 Release:        1
 Summary:        Hardware-accelerated video processing on Intel integrated GPUs Library
 Group:          System/Kernel and hardware
 License:        MIT
 URL:            https://github.com/intel/media-driver
-Source0:        %{url}/archive/%{version}/media-driver-intel-media-%{version}.tar.gz
+Source0:        https://codeload.github.com/intel/media-driver/tar.gz/refs/tags/intel-media-%{version}#/intel-media-driver-%{version}.tar.gz
 
 BuildRequires:  cmake
 BuildRequires:  pkgconfig(gmock)
@@ -17,7 +17,7 @@ BuildRequires:  pkgconfig(igdgmm)
 BuildRequires:  pkgconfig(libdrm_intel)
 BuildRequires:  pkgconfig(pciaccess)
 BuildRequires:  pkgconfig(x11)
-BuildRequires:  pkgconfig(ocl-icd)
+BuildRequires:  pkgconfig(OpenCL)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(libva)
 
