@@ -3,13 +3,13 @@
 %define develname %mklibname igfxcmrt -d
 
 Name:           intel-media-driver
-Version:        24.1.2
+Version:        24.1.3
 Release:        1
 Summary:        Hardware-accelerated video processing on Intel integrated GPUs Library
 Group:          System/Kernel and hardware
 License:        MIT
 URL:            https://github.com/intel/media-driver
-Source0:        https://codeload.github.com/intel/media-driver/tar.gz/refs/tags/intel-media-%{version}#/intel-media-driver-%{version}.tar.gz
+Source0:        https://github.com/intel/media-driver/archive/%{version}/media-driver-intel-media-%{version}.tar.gz
 
 BuildRequires:  cmake
 BuildRequires:  pkgconfig(gmock)
