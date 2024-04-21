@@ -1,3 +1,5 @@
+%global optflags %{optflags} -Wno-error -Wno-Wvla-cxx-extension
+
 %define major   7
 %define libname %mklibname igfxcmrt
 %define develname %mklibname igfxcmrt -d
