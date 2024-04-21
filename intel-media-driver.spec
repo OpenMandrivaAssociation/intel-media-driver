@@ -3,7 +3,7 @@
 %define develname %mklibname igfxcmrt -d
 
 Name:           intel-media-driver
-Version:        24.1.3
+Version:        24.2.1
 Release:        1
 Summary:        Hardware-accelerated video processing on Intel integrated GPUs Library
 Group:          System/Kernel and hardware
