@@ -11,7 +11,6 @@ License:        MIT
 URL:            https://github.com/intel/media-driver
 Source0:        https://github.com/intel/media-driver/archive/%{version}/media-driver-intel-media-%{version}.tar.gz
 
-BuildRequires:  cmake
 BuildRequires:  pkgconfig(gmock)
 BuildRequires:  pkgconfig(igdgmm)
 BuildRequires:  pkgconfig(libdrm_intel)
@@ -21,7 +20,21 @@ BuildRequires:  pkgconfig(OpenCL)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(libva)
 
+BuildSystem:	cmake
+BuildOption:	-DBUILD_DISPATCHER=ON
+BuildOption:	-DBUILD_SAMPLES=OFF
+BuildOption:	-DBUILD_TESTS=ON
+BuildOption:	-DBUILD_TOOLS=OFF
+BuildOption:	-DENABLE_OPENCL=ON
+BuildOption:	-DENABLE_WAYLAND=ON
+BuildOption:	-DENABLE_X11=ON
+BuildOption:	-DENABLE_X11_DRI3=ON
+BuildOption:	-DUSE_SYSTEM_GTEST=ON
+
 Requires:       %{libname} = %{EVRD}
+
+%patchlist
+media-driver-clang.patch
 
 %description
 Intel Media SDK provides a plain C API to access hardware-accelerated video
@@ -63,24 +76,3 @@ applications which will use igfxcmrt library.
 %{_includedir}/igfxcmrt/cm_*.h
 %{_libdir}/libigfxcmrt.so
 %{_libdir}/pkgconfig/igfxcmrt.pc
-
-%prep
-%autosetup -p1 -n media-driver-intel-media-%{version}
-
-%build
-%cmake \
-    -DBUILD_DISPATCHER=ON \
-    -DBUILD_SAMPLES=OFF \
-    -DBUILD_TESTS=ON \
-    -DBUILD_TOOLS=OFF \
-    -DENABLE_OPENCL=ON \
-    -DENABLE_WAYLAND=ON \
-    -DENABLE_X11=ON \
-    -DENABLE_X11_DRI3=ON \
-    -DUSE_SYSTEM_GTEST=ON \
-
-%make_build
-
-%install
-%make_install -C build
-find %{buildroot} -name '*.la' -exec rm -f {} ';'

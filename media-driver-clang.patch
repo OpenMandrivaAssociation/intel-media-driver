@@ -1,0 +1,11 @@
+diff -up media-driver-intel-media-24.2.5/media_softlet/linux/common/os/xe/mos_bufmgr_xe.c.omv~ media-driver-intel-media-24.2.5/media_softlet/linux/common/os/xe/mos_bufmgr_xe.c
+--- media-driver-intel-media-24.2.5/media_softlet/linux/common/os/xe/mos_bufmgr_xe.c.omv~	2024-06-30 22:36:46.584951669 +0200
++++ media-driver-intel-media-24.2.5/media_softlet/linux/common/os/xe/mos_bufmgr_xe.c	2024-06-30 22:37:58.777720427 +0200
+@@ -1034,6 +1034,7 @@ __mos_context_restore_xe(struct mos_bufm
+     ret = mos_query_engines_count_xe(bufmgr, &nengine);
+     MOS_DRM_CHK_STATUS_MESSAGE_RETURN(ret,
+                 "query engine count of restore failed, return error(%d)", ret)
++#pragma GCC diagnostic ignored "-Wvla-cxx-extension"
+     struct drm_xe_engine_class_instance engine_map[nengine];
+     ret = mos_query_engines_xe(bufmgr,
+                 context->engine_class,
