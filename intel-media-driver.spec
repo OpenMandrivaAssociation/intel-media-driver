@@ -34,7 +34,7 @@ BuildOption:	-DUSE_SYSTEM_GTEST=ON
 Requires:       %{libname} = %{EVRD}
 
 %patchlist
-media-driver-clang.patch
+#media-driver-clang.patch
 
 %description
 Intel Media SDK provides a plain C API to access hardware-accelerated video
